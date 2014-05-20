@@ -1,0 +1,251 @@
+@CHARSET "ISO-8859-1";
+
+
+#hall-floor
+{
+	background-image:url('../image/hall-floor.jpg');	 
+	position: fixed; 
+  /* 	top:8%;
+  	left:20%; */ 
+  	  	
+  	width: 70%;
+  	height: 80%;
+  	
+  	
+  	border:2px solid #a1a1a1;
+	padding:3px 10px; 	
+	border-radius:25px;
+	
+}
+
+
+.left-zone
+{
+	float:left;
+	width:75%;
+	height: 100%;
+	position: relative; 	
+	/* background-color:#CCFF66;   */
+}
+
+.right-zone
+{
+	float:right;
+	width:24%;
+	height: 90%;
+	margin-top:2%;
+	position: relative; 
+	background-color:#99CC99;  
+}
+ 
+
+.badminton-zone
+{
+	/* background-color:red; */
+	/* position: relative;  */
+	width:100%;
+	height:30%;
+	margin:1%;
+}
+.badminton
+{	
+	float:left;
+	width: 32%;
+  	height: 65%;;
+  	position:relative;
+	margin-left:1%;
+	margin-top:1%; 
+	
+}
+
+.badminton:hover
+{	
+	opacity:0.8;	
+	
+}
+
+
+.basketball-zone
+{	
+	/* background-color:green; */
+	/* position: relative;  */
+	width:100%;
+	height:30%;	
+	margin:1%;	 
+}
+
+.basketball
+{	
+	float:left;
+	width: 32%;
+  	height: 65%;
+  	position:relative;
+	margin-left:1%;
+	margin-top:1%;
+	
+}
+
+.basketball:hover
+{	
+	opacity:0.6;	
+	
+}
+
+
+.left-bottom-zone
+{
+	width:100%;
+	height:30%;	
+}
+
+.left-bottom-left-zone
+{
+	float:left;
+	width:70%;
+	height:100%;
+}
+
+.left-bottom-right-zone
+{
+	float:right;
+	width:25%;
+	height:100%;
+	
+}
+
+.pingpong-zone
+{
+	/* background-color:yellow; */
+	/* position: relative;  */
+	width:100%;;
+	height:60%;	
+	margin:1%;
+	
+}
+
+
+.pingpong
+{
+	float:left;
+	width: 10%;
+  	height: 100%;
+  	position:relative;
+	margin-left:3%;
+	margin-right:3%;
+	
+}
+ 
+ .pingpong:hover
+ {
+ 
+ opacity:0.6;	
+ 
+ }
+ 
+.tennis-zone
+{
+	/* background-color:black; */ 
+	width:100%;
+	height:35%;	
+	margin-bottom:15%;
+}
+
+
+.tennis
+{	
+	/* background-color:yellow; */
+	position: relative; 
+	width:46%;
+	margin:1%;	
+	margin-top:2%;
+	float:left;		
+}
+ 
+.tennis:hover
+{
+	
+	opacity:0.6;	
+	
+}
+ .entrance
+ {
+ 	width:60%;
+ 	height:75%;
+ 	float:right;
+ 	margin-right:35%;
+ 	bottom:2%; 
+ 	opacity:0.5;
+ }
+ 
+ .entrance:hover
+ {
+ 
+ opacity:1.0;
+ }
+ 
+ 
+ .court-zone 
+ {
+ 	width:100%;
+ 	height:85%;
+ 	margin:1%;
+ }
+ 
+ .right-bottom-zone
+ {
+ 	width:100%;
+ 	height:45%;
+ 
+ }
+ 
+ .right-bottom-zone
+ {
+ 
+ 	width:100%;
+ 	height:45%;
+ }
+ 
+.court-title
+ {
+ /* position:relative; */
+ width:100%;
+ height:5%;
+ margin:1%;
+ } 
+ 
+ .small-title
+ {
+ 	float:left;
+ 	position: relative; 
+ 	margin-right:15%;
+ 	margin-left:12%;
+ 	font-size:12px;
+ 
+ }
+ 
+  .small-title2
+ {
+ 	float:left;
+ 	position: relative;
+ 	font-size:12px;  	
+ 	margin-right:6%;
+ 	margin-left:3%;
+ 
+ }
+   .small-title3
+ {
+ 	float:left;
+ 	position: relative;
+ 	font-size:15px,bolt;  	
+ 	margin-left:15%;
+ 	margin-right:13%;
+ }
+ 
+  .small-title4
+ {
+ 	float:left;
+ 	position: relative;
+ 	font-size:10px;  	
+ 	margin-left:10%;
+ 	margin-right:20%;
+ }
