@@ -1,6 +1,7 @@
 package org.groept.cloudMigration.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.ReservationDao;
@@ -36,6 +37,10 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public void editSubscriber(Subscriber subscriber) {
 		// TODO Auto-generated method stub
+		
+		Set<Reservation> res=subscriberDao.findById(subscriber.getId()).getReservation();
+		subscriber.setReservation(res);
+		
 		subscriberDao.save(subscriber);
 	}
 

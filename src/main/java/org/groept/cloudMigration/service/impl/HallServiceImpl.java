@@ -6,6 +6,7 @@ import java.util.Set;
 import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.CourtDao;
 import org.groept.cloudMigration.dao.HallDao;
+import org.groept.cloudMigration.model.Admin;
 import org.groept.cloudMigration.model.CacheRecord;
 import org.groept.cloudMigration.model.Court;
 import org.groept.cloudMigration.model.Hall;
@@ -50,6 +51,11 @@ public class HallServiceImpl implements HallService {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Edit Hall");
+		
+		Admin ad=hallDao.findById(hall.getId()).getAdmin();
+		hall.setAdmin(ad);
+		
+		
 		hallDao.save(hall);
 	}
 

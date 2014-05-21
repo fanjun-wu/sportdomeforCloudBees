@@ -44,10 +44,6 @@ private static final Logger logger = LoggerFactory.getLogger(TimeIntervalControl
 	}
 	
 	
-	
-	
-	
-
 	@RequestMapping(value="/getTimeInterval", method=RequestMethod.GET)
 	public ModelAndView fetchTimeInterval(@RequestParam("timeIntervalId") ObjectId timeIntervalId) {
 		logger.info("Fetching timeInterval " + timeIntervalId);

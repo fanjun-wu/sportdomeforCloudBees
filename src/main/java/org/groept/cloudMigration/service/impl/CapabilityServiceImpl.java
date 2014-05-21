@@ -3,6 +3,7 @@ package org.groept.cloudMigration.service.impl;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.CapabilityDao;
@@ -43,6 +44,10 @@ public class CapabilityServiceImpl  implements CapabilityService{
 		// TODO Auto-generated method stub
 		
 		System.out.println("edit Capability()");
+		
+		Set<ObjectId>  cts=capabilityDao.findById(capability.getId()).getCourts();
+		capability.setCourts(cts);
+		
 		capabilityDao.save(capability);
 	}
 

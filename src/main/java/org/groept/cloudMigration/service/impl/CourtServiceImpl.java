@@ -55,7 +55,13 @@ public class CourtServiceImpl implements CourtService{
 		
 		System.out.println("inside editCourt()");
 		
+		Set<ObjectId> caps=courtDao.findById(court.getId()).getCapabilities();
+		Hall hl=courtDao.findById(court.getId()).getHall();
+		court.setCapabilities(caps);
+		court.setHall(hl);
+		
 		courtDao.save(court);
+		
 		
 	}
 

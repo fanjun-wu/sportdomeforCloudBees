@@ -1,12 +1,15 @@
 package org.groept.cloudMigration.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.ReservationDao;
 import org.groept.cloudMigration.dao.TimeIntervalDao;
 import org.groept.cloudMigration.model.CacheRecord;
+import org.groept.cloudMigration.model.Court;
 import org.groept.cloudMigration.model.Reservation;
+import org.groept.cloudMigration.model.Subscriber;
 import org.groept.cloudMigration.model.TimeInterval;
 import org.groept.cloudMigration.service.CacheRecordService;
 import org.groept.cloudMigration.service.ReservationService;
@@ -36,6 +39,15 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public void editReservation(Reservation reservation) {
 		// TODO Auto-generated method stub
+		
+		Subscriber sbs=reservationDao.findById(reservation.getId()).getSubscriber();
+		Court ct=reservationDao.findById(reservation.getId()).getCourt();
+		Set<TimeInterval> tvl=reservationDao.findById(reservation.getId()).getTimeInterval();
+		
+		reservation.setCourt(ct);
+		reservation.setSubscriber(sbs);
+		reservation.setTimeInterval(tvl);
+				
 		reservationDao.save(reservation);
 	}
 

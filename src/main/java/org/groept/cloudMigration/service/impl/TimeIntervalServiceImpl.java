@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.TimeIntervalDao;
 import org.groept.cloudMigration.model.CacheRecord;
 import org.groept.cloudMigration.model.Capability;
+import org.groept.cloudMigration.model.Reservation;
 import org.groept.cloudMigration.model.TimeInterval;
 import org.groept.cloudMigration.service.CacheRecordService;
 import org.groept.cloudMigration.service.TimeIntervalService;
@@ -35,6 +36,10 @@ public class TimeIntervalServiceImpl implements TimeIntervalService {
 	@Override
 	public void editTimeInterval(TimeInterval timeInterval) {
 		// TODO Auto-generated method stub
+		
+		Set<Reservation> res=timeIntervalDao.findById(timeInterval.getId()).getReservation();
+		timeInterval.setReservation(res);
+		
 		timeIntervalDao.save(timeInterval);
 	}
 

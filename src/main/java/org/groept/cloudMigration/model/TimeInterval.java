@@ -49,6 +49,11 @@ public class TimeInterval
 	}
 	
 	 
+	public void setReservation(Set<Reservation> reservation) {
+		this.reservation = reservation;
+	}
+
+
 	public void addAllReservation(Set<Reservation> newReservation) {
 		if (this.reservation == null) {
 			this.reservation = new HashSet<Reservation>();

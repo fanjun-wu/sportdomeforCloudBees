@@ -172,7 +172,7 @@ private static final Logger logger = LoggerFactory.getLogger(CourtController.cla
 	@RequestMapping(value="/capaCourtLink", method=RequestMethod.GET)
 	public String capaCourtLink(@RequestParam("capabilityId") ObjectId capabilityId,@RequestParam("courtId") ObjectId courtId) {
 		
-Court c =courtService.getCourt(courtId);
+		Court c =courtService.getCourt(courtId);
 		
 		Capability cap= capabilityService.getCapability(capabilityId);
 		
@@ -180,7 +180,7 @@ Court c =courtService.getCourt(courtId);
 		Set<ObjectId> capname=new HashSet<ObjectId>();
 		
 		cap.getCourts().add(c.getId());
-	c.getCapabilities().add(cap.getId());
+		c.getCapabilities().add(cap.getId());
 		
 		  Query query = new Query(Criteria.where("id").is(c.getId()));
 		  Update update=new Update();
