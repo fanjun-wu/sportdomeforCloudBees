@@ -94,7 +94,13 @@ public class Admin extends Person
 		oldhall.unsetAdmin();	
 	}
 
-
+	@Override
+	public String toString()
+	{
+		
+		return ""+getName()+" "+getEmail()+" "+getTelephone()+" "+getGender()+" "+getAge()+" "+getPrivilege();
+		
+	}
 
 	
 	

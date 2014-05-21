@@ -19,6 +19,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,13 +51,18 @@ public class HallServiceImpl implements HallService {
 	public void editHall(Hall hall) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Edit Hall");
-		
-		Admin ad=hallDao.findById(hall.getId()).getAdmin();
-		hall.setAdmin(ad);
+		System.out.println("Edit Hall: "+hall.getId());
 		
 		
-		hallDao.save(hall);
+		  Query query = new Query(Criteria.where("id").is(hall.getId()));
+		  Update update=new Update();
+		  update.set("name", hall.getName());
+
+		  update.set("openTime", hall.getOpenTime());
+		  update.set("closeTime", hall.getCloseTime());
+		  update.set("introduction", hall.getIntroduction());
+		  mongoTemplate.updateFirst(query, update, Hall.class);
+		
 	}
 
 	@CacheEvict(value = "halls",key = "new String(#hallId).concat('.Hall')")
@@ -71,7 +77,6 @@ public class HallServiceImpl implements HallService {
 	}
 	
 	@Cacheable(value = "halls",key = "new String(#hallId).concat('.Hall')")
-	//@Cacheable(value = "halls",key = "new Integer(9999999).toString().concat('.Hall')")
 	@Override
 	public Hall getHall(ObjectId hallId) {
 		// TODO Auto-generated method stub

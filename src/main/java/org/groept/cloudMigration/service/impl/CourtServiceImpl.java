@@ -23,6 +23,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,16 +54,15 @@ public class CourtServiceImpl implements CourtService{
 	public void editCourt(Court court) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("inside editCourt()");
-		
-		Set<ObjectId> caps=courtDao.findById(court.getId()).getCapabilities();
-		Hall hl=courtDao.findById(court.getId()).getHall();
-		court.setCapabilities(caps);
-		court.setHall(hl);
-		
-		courtDao.save(court);
-		
-		
+		  System.out.println("inside editCourt():  "+court.getId());	
+		  
+		 
+		  Query query = new Query(Criteria.where("id").is(court.getId()));
+		  Update update=new Update();
+		  update.set("name", court.getName());
+		  update.set("introduction", court.getIntroduction());
+		  mongoTemplate.updateFirst(query, update, Court.class);
+	
 	}
 
 	@CacheEvict(value = "courts",key = "new String(#courtId).concat('.Court')")

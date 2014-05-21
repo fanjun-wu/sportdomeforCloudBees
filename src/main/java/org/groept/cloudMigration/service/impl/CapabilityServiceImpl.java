@@ -17,6 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
@@ -29,7 +33,8 @@ public class CapabilityServiceImpl  implements CapabilityService{
 	@Autowired
 	private CourtDao courtDao;
 	
-	
+	@Autowired
+	private MongoTemplate mongoTemplate;
 	@Autowired
 	private CacheRecordService cacheRecordService; 
 	
@@ -43,12 +48,16 @@ public class CapabilityServiceImpl  implements CapabilityService{
 	public void editCapability(Capability capability) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("edit Capability()");
+		System.out.println("edit Capability():  "+capability.getId());
+				
+		  Query query = new Query(Criteria.where("id").is(capability.getId()));
+		  Update update=new Update();
+		 
+		  update.set("resource", capability.getResource());
+		  update.set("conditionCap", capability.getConditionCap());
+		  update.set("discriptionCap", capability.getDiscriptionCap());
+		  mongoTemplate.updateFirst(query, update, Capability.class);
 		
-		Set<ObjectId>  cts=capabilityDao.findById(capability.getId()).getCourts();
-		capability.setCourts(cts);
-		
-		capabilityDao.save(capability);
 	}
 
 	@CacheEvict(value = "capabilities",key = "new String(#capabilityId).concat('.Capability')")

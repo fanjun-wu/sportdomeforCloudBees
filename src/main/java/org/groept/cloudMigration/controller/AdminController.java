@@ -62,9 +62,17 @@ public class AdminController {
 	public ModelAndView fetchAdmin(@RequestParam("adminId") ObjectId adminId) {
 		logger.info("Fetching admin " + adminId);
 		Admin admin = adminService.getAdmin(adminId);
+		
+		System.out.println("Admin: "+admin.toString());
+		
+		
 		Map<String,Object>modelAndView = new HashMap<String,Object>();
 		modelAndView.put("admin", admin);
 		return new ModelAndView("admin/modifyAdmin", modelAndView);
+		//return new ModelAndView("admin/newAdmin", modelAndView);
+		
+		
+		
 	}
 	
 	

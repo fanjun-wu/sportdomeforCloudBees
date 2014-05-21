@@ -7,10 +7,15 @@ import org.bson.types.ObjectId;
 import org.groept.cloudMigration.dao.AdminDao;
 import org.groept.cloudMigration.model.Admin;
 import org.groept.cloudMigration.model.CacheRecord;
+import org.groept.cloudMigration.model.Capability;
 import org.groept.cloudMigration.service.AdminService;
 import org.groept.cloudMigration.service.CacheRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +26,8 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDao adminDao;
 	
-	
+	@Autowired
+	private MongoTemplate mongoTemplate;
 	@Autowired
 	private CacheRecordService cacheRecordService; 
 	
@@ -34,7 +40,18 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void editAdmin(Admin admin) {
 		// TODO Auto-generated method stub
-		adminDao.save(admin);
+				
+		  Query query = new Query(Criteria.where("id").is(admin.getId()));
+		  Update update=new Update();
+		  update.set("name", admin.getName());
+		  update.set("email", admin.getEmail());
+		  update.set("telephone", admin.getTelephone());
+		  update.set("gender", admin.getGender());
+		  update.set("age", admin.getAge());
+		  update.set("privilege", admin.getPrivilege());
+		  mongoTemplate.updateFirst(query, update, Admin.class);
+		
+	
 	}
 
 	@Override
