@@ -267,8 +267,8 @@ public class TestController {
 		adminService.saveAdmin(admin);
 		
 		Hall hall=new Hall("HALL1",8,14,"no");
-		hall.setAdmin(admin);
-		admin.setHall(hall);
+	/*	hall.setAdmin(admin);*/
+/*		admin.setHall(hall);*/
 		hallService.saveHall(hall);
 		adminService.saveAdmin(admin);
 		
@@ -461,8 +461,8 @@ public class TestController {
 		adminService.saveAdmin(admin);
 		
 		Hall hall=new Hall("HALL1",8,14,"no");
-		hall.setAdmin(admin);
-		admin.setHall(hall);
+		/*hall.setAdmin(admin);*/
+	/*	admin.setHall(hall);*/
 		hallService.saveHall(hall);
 		adminService.saveAdmin(admin);
 		

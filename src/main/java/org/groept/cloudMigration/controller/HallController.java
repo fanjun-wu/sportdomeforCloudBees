@@ -38,10 +38,12 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.bson.types.ObjectId;
+import org.groept.cloudMigration.model.Admin;
 import org.groept.cloudMigration.model.CacheRecord;
 import org.groept.cloudMigration.model.Capability;
 import org.groept.cloudMigration.model.Court;
 import org.groept.cloudMigration.model.Hall;
+import org.groept.cloudMigration.service.AdminService;
 import org.groept.cloudMigration.service.CacheRecordService;
 import org.groept.cloudMigration.service.CapabilityService;
 import org.groept.cloudMigration.service.CourtService;
@@ -79,7 +81,8 @@ private static final Logger logger = LoggerFactory.getLogger(HallController.clas
 	private CourtService courtService;
 	@Autowired
 	private CapabilityService capabilityService;
-	
+	@Autowired
+	private AdminService adminService;
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
@@ -339,6 +342,72 @@ private static final Logger logger = LoggerFactory.getLogger(HallController.clas
 		//hallService.saveHall(hall);
 		return "redirect:courtList";
 	}
+	
+	@RequestMapping(value="/setAdmin", method=RequestMethod.GET)
+	public ModelAndView AdminList(@RequestParam("hallId") ObjectId hallId) {
+		logger.info("Listing capabilities.");
+		Collection<Admin> admins = adminService.getAdmins();
+		
+		
+		
+		Map<String,Object>model = new HashMap<String,Object>();
+		model.put("hallId",hallId);
+		model.put("admins", admins);
+		return new ModelAndView("hall/adminList", model);
+	}
+	
+	@RequestMapping(value="/AdminLink", method=RequestMethod.GET)
+	public String AdminLink(@RequestParam("hallId") ObjectId hallId,@RequestParam("adminId") ObjectId adminId) {
+		
+		Hall h =hallService.getHall(hallId);
+		Admin a= adminService.getAdmin(adminId);
+		
+		Collection<Admin> admins = adminService.getAdmins();
+		for(Admin admin: admins)
+			
+		{
+			System.out.println("pa1   "+admin.getHallId());
+			System.out.println("pa2   "+hallId);
+			if(admin.getHallId().equals(hallId))
+			{
+				admin.setHallId(null);
+				adminService.saveAdmin(admin);
+				System.out.println("pa2  set");
+			}
+		}
+		
+		a.setHallId(h.getId());
+		
+		
+		adminService.saveAdmin(a);
+		
+		
+		return "redirect:hallList";
+	}
+	
+	@RequestMapping(value="/checkAdmin", method=RequestMethod.GET)
+	public ModelAndView checkAdmin(@RequestParam("hallId") ObjectId hallId) {
+		logger.info("Listing capabilities.");
+		Collection<Admin> admins = adminService.getAdmins();
+		Admin aa= new Admin();
+		for(Admin a: admins)
+			
+			
+			
+		{
+			if(a.getHallId().equals(hallId))
+			{
+				aa=a;
+			}
+		}
+		
+		
+		
+		Map<String,Object>model = new HashMap<String,Object>();
+		model.put("admin", aa);
+		return new ModelAndView("hall/checkAdmin", model);
+	}
+
 	
 	
 }

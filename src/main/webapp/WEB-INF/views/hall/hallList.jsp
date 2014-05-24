@@ -33,7 +33,8 @@
 							<td>${hall.introduction}</td>
 							<td><a href="CreatCourtInHall?hallId=${hall.id}">Add Court</a></td>
 							<td><a href="showhallCourtList?hallId=${hall.id}">Court List</a></td>
-							
+							<td><a href="setAdmin?hallId=${hall.id}">SetAdmin</a></td>
+							<td><a href="checkAdmin?hallId=${hall.id}">CheckAdmin</a></td>
 						</tr>
 					</c:forEach> 
 				

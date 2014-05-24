@@ -67,11 +67,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List getAdmins() {
+	public List<Admin> getAdmins() {
 		// TODO Auto-generated method stub
 		
 		
-		return (List) adminDao.findAll();
+		return (List<Admin>) adminDao.findAll();
 	}
 
 	

@@ -54,8 +54,8 @@ public class Hall
 
 
 
-	@DBRef(lazy=true)
-	private Admin admin;
+	/*@DBRef(lazy=true)
+	private Admin admin;*/
 	
 	/*@DBRef
 	private List<Court> courts ;*/
@@ -112,7 +112,7 @@ public class Hall
 	}
 
 
-	public void basicSetAdmin(Admin myAdmin) {
+	/*public void basicSetAdmin(Admin myAdmin) {
 		if (this.admin != myAdmin) {
 			if (myAdmin != null){
 				if (this.admin != myAdmin) {
@@ -133,7 +133,7 @@ public class Hall
 
 	public Admin getAdmin() {
 		return this.admin;	
-	}
+	}*/
 	
 	
 	/*public List<Court> getCourts() {
@@ -203,13 +203,13 @@ public class Hall
 			
 	}*/
 
-	public void unsetAdmin() {
+	/*public void unsetAdmin() {
 		if (this.admin == null)
 			return;
 		Admin oldadmin = this.admin;
 		this.admin = null;
 		oldadmin.unsetHall();	
-	}
+	}*/
 	
 	
 	/*public void removeCourt(Court oldCourt) {
